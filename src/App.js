@@ -2,23 +2,23 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+import TabelLabels from './TableLabels';
+import TableData from './TableData';
+        <table className="tableContainer">
+          <TabelLabels label={this.state.filterType} />
+          {this.state.filteredData
+            ? this.state.filteredData.map((item, index) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+                  <TableData
+                    order={index + 1}
+                    label={item.item}
+                    count={item.count}
+                    average={item.count}
+                  />
+                );
+              })
+            : null}
+        </table>
     </div>
   );
 }
