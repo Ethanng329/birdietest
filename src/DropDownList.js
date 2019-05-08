@@ -1,6 +1,12 @@
+//@flow
 import React from 'react';
 
-function DropDownList({ list, handleChange }) {
+type Props = {
+  list: [],
+  handleChange: () => void
+};
+
+function DropDownList({ list, handleChange }: Props) {
   return (
     <div className="dropDownContainer">
       <select className="dropDownMenu" onChange={handleChange}>

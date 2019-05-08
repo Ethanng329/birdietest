@@ -1,10 +1,15 @@
+//@flow
 import React from 'react';
 
-function TabelLabels({ label = ' ' }) {
+type Props = {
+  lable: string
+};
+
+function TabelLabels({ lable = ' ' }: Props) {
   return (
     <tr className="tableLabelRow">
       <th className="tableCellOrder">#</th>
-      <th className="tableCellLabel">{label}</th>
+      <th className="tableCellLabel">{lable}</th>
       <th className="tableCellCount">count</th>
       <th className="tableCellCount">average</th>
     </tr>

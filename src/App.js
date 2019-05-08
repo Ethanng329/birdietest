@@ -17,7 +17,8 @@ const list = [
   'sex',
   'citizenship'
 ];
-class App extends Component {
+
+class App extends Component<AppProps> {
   state = {
     filteredData: [],
     filterType: ''
