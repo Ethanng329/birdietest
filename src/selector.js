@@ -5,14 +5,21 @@ export function filteredTable(rawData, filterType) {
   uniqueList.map(item => {
     let tally = 0;
     let average = 0;
-    rawData.forEach(ele => {
+
+    rawData.map(ele => {
       if (ele[filterType] === item) {
         tally++;
         average += ele.age;
       }
     });
 
-    return output.push({ item: item, count: tally, age: average / tally });
+    const averageAge = average / tally;
+
+    return output.push({
+      item: item,
+      count: tally,
+      age: averageAge.toFixed(1)
+    });
   });
 
   const sortedData = output.sort((a, b) => {
