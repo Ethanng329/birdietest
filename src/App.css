@@ -23,6 +23,47 @@
   color: #61dafb;
 }
 
+.dropDownContainer {
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropDownMenu {
+  width: 40%;
+  height: 20%;
+}
+
+.tableContainer {
+  width: 100%;
+  border: 1px solid black;
+}
+
+.tableLabelRow {
+  background-color: blue;
+  color: white;
+}
+.tableCellOrder {
+  width: 5%;
+}
+.tableCellLabel {
+  width: 50%;
+}
+
+.tableCellCount {
+  width: 20%;
+}
+
+.tableDataRow {
+  text-align: center;
+  border: 1px solid black;
+}
+
+.labelText {
+  text-align: start;
+  padding-left: 1%;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
