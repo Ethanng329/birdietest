@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { fetchDBData } from './actions';
 import TabelLabels from './TableLabels';
 import TableData from './TableData';
+import DropDownList from './DropDownList';
 import { filteredTable } from './selector';
 
 const list = [
@@ -46,29 +47,20 @@ class App extends Component {
           spinner
           text="Fetching data from the database..."
         >
-          <div className="dropDownContainer">
-            <select className="dropDownMenu" onChange={this.handleChange}>
-              <option value="" selected disabled hidden>
-                Choose a demographic
-              </option>
-              {list.map(item => {
-                return <option value={item}>{item}</option>;
-              })}
-            </select>
-          </div>
+          <DropDownList list={list} handleChange={this.handleChange} />
           <table className="tableContainer">
             <TabelLabels label={this.state.filterType} />
             {this.state.filteredData.length !== 0 ? (
               this.state.filteredData.map((item, index) => {
-                  return (
-                    <TableData
-                      order={index + 1}
-                      label={item.item}
-                      count={item.count}
-                      average={item.age}
-                    />
-                  );
-                })
+                return (
+                  <TableData
+                    order={index + 1}
+                    label={item.item}
+                    count={item.count}
+                    average={item.age}
+                  />
+                );
+              })
             ) : (
               <div className="placeholder" />
             )}
