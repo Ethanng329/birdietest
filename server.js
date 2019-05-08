@@ -1,5 +1,4 @@
 const express = require('express');
-// const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 
@@ -35,7 +34,6 @@ app.get('/fetchdata', function(req, res) {
   ) {
     if (!err) {
       res.status(200);
-      console.log('Query Data', rows);
       return res.send(rows);
     } else console.log('something wrong with DB', err);
   });
