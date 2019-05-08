@@ -7,6 +7,8 @@ require('dotenv').config({
   path: path.resolve(__dirname, `.env.${process.env.NODE_ENV}`)
 });
 
+app.use(express.static(path.join(__dirname, 'build')));
+
 const mysql = require('mysql');
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -25,17 +27,19 @@ connection.connect(function(err) {
   console.log('connected as id ' + connection.threadId);
 });
 
-connection.query(`SELECT * from ${process.env.DB_TABLE}`, function(
-  err,
-  rows,
-  fields
-) {
-  if (!err) {
-    console.log('result', rows, fields);
-  } else console.log(err);
+app.get('/fetchdata', function(req, res) {
+  connection.query(`SELECT * from ${process.env.DB_TABLE}`, function(
+    err,
+    rows,
+    fields
+  ) {
+    if (!err) {
+      res.status(200);
+      console.log('Query Data', rows);
+      return res.send(rows);
+    } else console.log('something wrong with DB', err);
+  });
 });
-
-app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
