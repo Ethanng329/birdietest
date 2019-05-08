@@ -63,6 +63,10 @@
   text-align: start;
   padding-left: 1%;
 }
+
+.placeholder {
+  height: 80vh;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

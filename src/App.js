@@ -58,8 +58,8 @@ class App extends Component {
           </div>
           <table className="tableContainer">
             <TabelLabels label={this.state.filterType} />
-            {this.state.filteredData
-              ? this.state.filteredData.map((item, index) => {
+            {this.state.filteredData.length !== 0 ? (
+              this.state.filteredData.map((item, index) => {
                   return (
                     <TableData
                       order={index + 1}
@@ -69,7 +69,9 @@ class App extends Component {
                     />
                   );
                 })
-              : null}
+            ) : (
+              <div className="placeholder" />
+            )}
           </table>
         </LoadingOverlay>
       </div>
