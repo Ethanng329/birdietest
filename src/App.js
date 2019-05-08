@@ -58,7 +58,7 @@ class App extends Component {
                     order={index + 1}
                     label={item.item}
                     count={item.count}
-                    average={item.count}
+                    average={item.age}
                   />
                 );
               })

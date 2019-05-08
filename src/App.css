@@ -37,12 +37,11 @@
 
 .tableContainer {
   width: 100%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .tableLabelRow {
-  background-color: blue;
-  color: white;
+  height: 20%;
 }
 .tableCellOrder {
   width: 5%;
