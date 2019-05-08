@@ -2,6 +2,7 @@ export function getRawDBData(data) {
   return { type: 'INITIAL_DATA', data };
 }
 
+const isLoading = () => ({ type: 'LOADING' });
 // const dummyData = [
 //   { age: 1, education: 'university' },
 //   { age: 51, education: 'university' },
@@ -12,6 +13,8 @@ export function getRawDBData(data) {
 
 export function fetchDBData() {
   return function(dispatch) {
+    dispatch(isLoading());
+
     fetch('/fetchdata')
       .then(res => res.json())
       .then(data => {

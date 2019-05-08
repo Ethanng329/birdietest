@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
 import './App.css';
 
+import LoadingOverlay from 'react-loading-overlay';
 import { connect } from 'react-redux';
 import { fetchDBData } from './actions';
 import TabelLabels from './TableLabels';
@@ -17,7 +18,8 @@ const list = [
 ];
 class App extends Component {
   state = {
-    filteredData: []
+    filteredData: [],
+    filterType: ''
   };
 
   componentDidMount() {
@@ -39,38 +41,45 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div className="dropDownContainer">
-          <select className="dropDownMenu" onChange={this.handleChange}>
-            <option value="" selected disabled hidden>
-              Choose a demographic
-            </option>
-            {list.map(item => {
-              return <option value={item}>{item}</option>;
-            })}
-          </select>
-        </div>
-        <table className="tableContainer">
-          <TabelLabels label={this.state.filterType} />
-          {this.state.filteredData
-            ? this.state.filteredData.map((item, index) => {
-                return (
-                  <TableData
-                    order={index + 1}
-                    label={item.item}
-                    count={item.count}
-                    average={item.age}
-                  />
-                );
-              })
-            : null}
-        </table>
+        <LoadingOverlay
+          active={this.props.loading}
+          spinner
+          text="Fetching data from the database..."
+        >
+          <div className="dropDownContainer">
+            <select className="dropDownMenu" onChange={this.handleChange}>
+              <option value="" selected disabled hidden>
+                Choose a demographic
+              </option>
+              {list.map(item => {
+                return <option value={item}>{item}</option>;
+              })}
+            </select>
+          </div>
+          <table className="tableContainer">
+            <TabelLabels label={this.state.filterType} />
+            {this.state.filteredData
+              ? this.state.filteredData.map((item, index) => {
+                  return (
+                    <TableData
+                      order={index + 1}
+                      label={item.item}
+                      count={item.count}
+                      average={item.age}
+                    />
+                  );
+                })
+              : null}
+          </table>
+        </LoadingOverlay>
       </div>
     );
   }
 }
 
 const mapStateToProps = redux => ({
-  rawData: redux.data
+  rawData: redux.data.rawData,
+  loading: redux.data.loading
 });
 
 const mapDispatchToProps = dispatch => {
